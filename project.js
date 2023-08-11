@@ -12,10 +12,15 @@ const prompt = require("prompt-sync")();
 
 // create a function for user to enter deposit amount
 const deposit = () => {
-    const depositAmount = prompt("Enter a deposit amount: ")
-    // convert deposit amount to integer
-    const numberDepositAmount = parseFloat(depositAmount);
+  const depositAmount = prompt("Enter a deposit amount: ");
+  // convert deposit amount to integer
+  const numberDepositAmount = parseFloat(depositAmount);
+
+  // check validity in number
+  if (isNaN(numberDepositAmount) || numberDepositAmount <= 0) {
+    console.log("Invalid deposit amount, please try again.");
+  }
 };
 
-// testing code: deposit();
+// deposit();
 
