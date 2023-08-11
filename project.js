@@ -6,5 +6,11 @@
 // 5. check if the user won
 // 6. give the user their winnings or take bet if lost.
 // 7. play again
-const prompt = require("prompt-sync")(); //import prompt-sync to get user input for slot
 
+//import prompt-sync with require function to get user input for slot
+const prompt = require("prompt-sync")(); 
+
+// create a function for user to enter deposit amount
+const deposit = () => {
+    const depositAmount = prompt("Enter a deposit amount: ")
+}
