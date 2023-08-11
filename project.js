@@ -13,4 +13,9 @@ const prompt = require("prompt-sync")();
 // create a function for user to enter deposit amount
 const deposit = () => {
     const depositAmount = prompt("Enter a deposit amount: ")
-}
+    // convert deposit amount to integer
+    const numberDepositAmount = parseFloat(depositAmount);
+};
+
+// testing code: deposit();
+
