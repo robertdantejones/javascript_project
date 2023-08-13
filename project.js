@@ -10,6 +10,26 @@
 //import prompt-sync with require function to get user input for slot
 const prompt = require("prompt-sync")(); 
 
+// creating the structure of the slot machine.
+const ROWS = 3;
+const COLS = 3;
+
+// symbols for each column and value set.
+const SYMBOLS_COUNT = {
+    "A" : 2,
+    "B" : 4,
+    "C" : 6,
+    "D" : 8
+}
+
+// multiplier for each symbol
+const SYMBOL_VALUES = {
+    "A" : 5,
+    "B" : 4,
+    "C" : 3,
+    "D" : 2
+}
+
 // create a function for user to enter deposit amount
 const deposit = () => {
 // making the user enter the number again if it's invalid. 
@@ -65,9 +85,36 @@ const getBet = (balance, lines) => {
   }
 };
 
+// function that "spins the slot machine"
+const spin = () => {
+    // generate array that selects all possible symbols
+    const symbols = [];
+    for (const [symbol, count] of Object.entries(SYMBOLS_COUNT))
+        for (let i = 0; i < count; i++) {
+            symbols.push(symbol);
+        }
+
+    const reels = [[], [], []];
+    for (let i=0; i < COLS; i++){
+        // copying symbols into this array.
+        // removing symbols so user wont choose them again.
+        const reelSymbols = [...symbols];
+        for (let j = 0; j < ROWS; j++) {
+                const randomIndex = Math.floor(Math.random() * reelSymbols.length)
+            const selectedSymbol = reelSymbols[randomIndex];
+            reels[i].push(selectedSymbol);
+            reelSymbols.splice(randomIndex, 1);
+        }
+    }
+    return reels;
+};
+const reels = spin(); 
+console.log(reels);
+
 // note to self: allowed for the value to be changed. 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance, numberOfLines);
+
 
 
