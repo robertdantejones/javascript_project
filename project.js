@@ -47,16 +47,16 @@ const getNumberOfLines = () => {
   }
 };
 
-const getBet = (balance) => {
+const getBet = (balance, lines) => {
   // making the user enter the bet again if it's invalid.
   while (true) {
-    const bet = prompt("Enter the total bet: ");
+    const bet = prompt("Enter the bet per line: ");
     // convert bet amount amount to integer
     // note to self: "numberBet" made as a variable bc you would want to add to it or subtract from it.
     const numberBet = parseFloat(bet);
 
     // check validity in number
-    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance) {
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance / lines) {
       console.log("Bet amount is invalid, please try again.");
       //returns amount if user enters a valid input
     } else {
@@ -68,6 +68,6 @@ const getBet = (balance) => {
 // note to self: allowed for the value to be changed. 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
-const bet = getBet(balance);
+const bet = getBet(balance, numberOfLines);
 
 
