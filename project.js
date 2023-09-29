@@ -110,21 +110,24 @@ const spin = () => {
 };
 
 const transpose = (reels) => {
-  const rows = []; 
+  const rows = [];
 
-  for (let i=0; i < ROWS; i++) {
+  for (let i = 0; i < ROWS; i++) {
     rows.push([]);
-    for (let j=0; j < COLS; j++) {
-      rows[i].push(reels[j][i])
+    for (let j = 0; j < COLS; j++) {
+      rows[i].push(reels[j][i]);
     }
   }
-  return rows
-}
+  return rows;
+};
 
 // note to self: allowed for the value to be changed. 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance, numberOfLines);
 const reels = spin();
+const rows = transpose(reels);
+console.log(reels);
+console.log(rows);
 
 
