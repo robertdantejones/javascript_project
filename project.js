@@ -108,13 +108,23 @@ const spin = () => {
     }
     return reels;
 };
-const reels = spin(); 
-console.log(reels);
+
+const transpose = (reels) => {
+  const rows = []; 
+
+  for (let i=0; i < ROWS; i++) {
+    rows.push([]);
+    for (let j=0; j < COLS; j++) {
+      rows[i].push(reels[j][i])
+    }
+  }
+  return rows
+}
 
 // note to self: allowed for the value to be changed. 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance, numberOfLines);
-
+const reels = spin();
 
 
