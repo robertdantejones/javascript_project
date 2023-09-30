@@ -107,6 +107,7 @@ const spin = () => {
     }
     return reels;
 };
+
 // *concept: transposing the matrix* checking if user won bet within row
 const transpose = (reels) => {
   const rows = [];
@@ -130,9 +131,10 @@ const printRows = (rows) => {
         rowString += " | ";
       }
     }
-    console.log(rowString)
+    console.log(rowString);
   }
 };
+
 // giving user wins
 const getWinnings = (rows, bet, lines) => {
   let winnings = 0;
@@ -155,14 +157,34 @@ const getWinnings = (rows, bet, lines) => {
   return winnings; 
 };
 
-// note to self: allowed for the value to be changed. 
-let balance = deposit();
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance, numberOfLines);
-const reels = spin();
-const rows = transpose(reels);
-printRows(rows);
-// console.log(reels);
-// console.log(rows);
+// play again
+const game = () => {
+  // note to self: allowed for the value to be changed.
+  let balance = deposit();
+
+  while (true) {
+    console.log("You have a balance of $" + balance);
+    const numberOfLines = getNumberOfLines();
+    const bet = getBet(balance, numberOfLines);
+    balance -= bet * numberOfLines;
+    const reels = spin();
+    const rows = transpose(reels);
+    printRows(rows);
+    const winnings = getWinnings(rows, bet, numberOfLines);
+    balance += winnings;
+    console.log("You won, $" + winnings.toString() + "!");
+
+    if (balance <= 0) {
+      console.log( "You ran out of money!");
+      break;
+    }
+
+    const playAgain = prompt("Do you want to play again? (y/n) ");
+    if (playAgain != "y") break; 
+  }
+};
+
+game();
+
 
 
