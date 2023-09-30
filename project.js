@@ -1,7 +1,6 @@
 // 1. Deposit some money
 // 2. determine number of lines to bet on
 // 2. Collect a bet amount
-// 3. collect a bet amount 
 // 4. spin the slot machine
 // 5. check if the user won
 // 6. give the user their winnings or take bet if lost.
@@ -133,6 +132,27 @@ const printRows = (rows) => {
     }
     console.log(rowString)
   }
+};
+// giving user wins
+const getWinnings = (rows, bet, lines) => {
+  let winnings = 0;
+  // note: checking indices
+  for (let row = 0; row < lines; row++) {
+    const symbols = rows[row];
+    let allSame = true; 
+
+    for (const symbol of symbols) {
+      // checking for validity in symbols row
+      if (symbol != symbols[0]) {
+        allSame = false;
+        break; 
+      }
+    }
+    if (allSame) {
+      winnings += bet * SYMBOL_VALUES[symbols[0]]
+    };
+  };
+  return winnings; 
 };
 
 // note to self: allowed for the value to be changed. 
