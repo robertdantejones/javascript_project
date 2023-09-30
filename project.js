@@ -121,19 +121,19 @@ const transpose = (reels) => {
   return rows;
 };
  
-// const printRows = (rows) => {
-//   // notes: looping through every array nested within "rows"
-//   for (const row of rows) {
-//     let rowString = "A";
-//     for (const [i, symbol] of row.entries()) {
-//       rowString += symbol;
-//       if (i != row.length - 1) {
-//         rowString += " | ";
-//       }
-//     }
-//     console.log(rowString)
-//   }
-// };
+const printRows = (rows) => {
+  // notes: looping through every array nested within "rows"
+  for (const row of rows) {
+    let rowString = "A";
+    for (const [i, symbol] of row.entries()) {
+      rowString += symbol;
+      if (i != row.length - 1) {
+        rowString += " | ";
+      }
+    }
+    console.log(rowString)
+  }
+};
 
 // note to self: allowed for the value to be changed. 
 let balance = deposit();
